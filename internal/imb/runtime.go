@@ -106,7 +106,13 @@ type Piece struct {
 }
 
 func (p *Piece) Label() string {
-	return p.Barcode
+	if p == nil {
+		return ""
+	}
+	if p.Tray == "" {
+		return p.Barcode
+	}
+	return p.Barcode + "@" + p.Tray
 }
 
 func ParsePieceMeta(b []byte) (map[string]string, error) {
