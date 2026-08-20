@@ -106,6 +106,10 @@ type Piece struct {
 }
 
 func (p *Piece) Label() string {
+	if p == nil {
+		// 扫码枪偶发给出空件：nil 指针应显示为空标签，而不是把进程打挂。
+		return ""
+	}
 	return p.Barcode
 }
 
